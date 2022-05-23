@@ -1,0 +1,80 @@
+{
+    "superheros": [
+        {
+            "id": 1,
+            "name": "Batman batbout",
+            "alterEgo": "Bruce Wayne"
+        },
+        {
+            "id": 2,
+            "name": "Surperman",
+            "alterEgo": "Clark Kent"
+        },
+        {
+            "id": 3,
+            "name": "Wonder Woman",
+            "alterEgo": "Princess Diana"
+        }
+     
+    ],
+    "friends": [
+        {
+            "id": 1,
+            "name": "Mass"
+        },
+        {
+            "id": 2,
+            "name": "Chellou"
+        },
+        {
+            "id": 3,
+            "name": "Tortir"
+        }
+    ],
+    "users": [
+        {
+            "id": "aziz@ytest.com",
+            "channelId": "helloWorld"
+        }
+    ],
+    "channels": [
+        {
+            "id": "helloWorld",
+            "courses": ["react", "vue", "angular"]
+        }
+    ],
+    "colors": [
+        {
+            "id": 1,
+            "label": "white"
+        },
+        {
+            "id": 2,
+            "label": "black"
+        },
+        {
+            "id": 3,
+            "label": "green"
+        },
+        {
+            "id": 4,
+            "label": "blue"
+        },
+        {
+            "id": 5,
+            "label": "red"
+        },
+        {
+            "id": 6,
+            "label": "yellow"
+        },
+        {
+            "id": 7,
+            "label": "brown"
+        },
+        {
+            "id": 8,
+            "label": "pink"
+        }
+    ]
+}
