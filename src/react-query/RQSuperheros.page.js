@@ -1,8 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
-import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import UseSuperHerosData from "./hooks/UseSuperHeroesData";
+import {useAddSuperHero, UseSuperHerosData} from "./hooks/UseSuperHeroesData";
 
 const fetchSuperHeros = (r) => {
   return axios.get("http://localhost:4000/superheros");
@@ -10,24 +9,33 @@ const fetchSuperHeros = (r) => {
 
 const RQSuperherosPage = () => {
   // const [poll, setPoll] = useState(3000);
+  const [name, setName] = useState("")
+  const [alterEgo, setAlterEgo] = useState("")
 
   const onSuccess = (res) => {
-    console.log("Success", res);
-    if (res.data.length > 3) {
-      // setPoll(false);
-    }
+    console.log("perform side effect after Success", res);
+    // if (res.data.length > 3) {
+    //   setPoll(false);
+    // }
   };
 
   const onError = (e) => {
     // setPoll(false);
 
-    console.log("Error", e);
+    console.log("perform side effect after Error", e);
   };
 
   const { isLoading, data, isError, error, isFetching, refetch } =
     UseSuperHerosData(onSuccess, onError);
 
-  console.log(isLoading, isFetching);
+    const {mutate: addHero, isLoading: _isLoading, isError: _isError, error: _error} = useAddSuperHero()
+    
+  const handleAddHeroClick = () => {
+    const hero = {name, alterEgo}
+    addHero(hero)
+  }
+
+    console.log(isLoading, isFetching);
 
   if (isLoading) {
     return <h2>Is Loading</h2>;
@@ -40,7 +48,13 @@ const RQSuperherosPage = () => {
   return (
     <div>
       <h2>RQ SuperHerosPage</h2>
-      <button onClick={refetch}>Fetch</button>
+
+      <div>
+        <input value={name} onChange={e=> setName(e.target.value)} />
+        <input value={alterEgo} onChange={e=> setAlterEgo(e.target.value)} />
+        <button onClick={handleAddHeroClick}>AddHero</button>
+      </div>
+
 
       {data?.data.map((hero) => (
         <div key={hero.name}>
@@ -51,6 +65,7 @@ const RQSuperherosPage = () => {
       {/* {data?.data.map((hero) => (
         <div key={hero}>{hero}</div>
       ))} */}
+      <button onClick={refetch}>Fetch</button>
     </div>
   );
 };
